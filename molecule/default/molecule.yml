@@ -1,0 +1,30 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: podman
+platforms:
+  # - name: instance
+  #   image: docker.io/pycontribs/centos:8
+  #   pre_build_image: true
+  - name: redhat
+    image: docker.io/geerlingguy/docker-ubi8-ansible
+    privileged: true
+    required: true
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /lib/systemd/systemd
+  - name: debian
+    image: localhost/hsap/docker-debian-systemd:latest
+    # privileged: true
+    required: true
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /lib/systemd/systemd
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+
