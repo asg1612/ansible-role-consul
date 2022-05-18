@@ -1,0 +1,37 @@
+---
+# - name: Configuramos el repositorio
+#   get_url:
+#     url: "http://yum.sacyl.es/repo/repos/rhel85.repo"
+#     dest: /etc/yum.repos.d/
+#     mode: '0644'
+#     validate_certs: no
+
+# - name: install mariadb
+#   yum:
+#     name: ["mariadb", "mariadb-server"]
+#     state: present
+#     disable_gpg_check: yes
+#     update_cache: yes
+
+# - name: Ensure Mariadb is running
+#   ansible.builtin.systemd:
+#     service: mariadb
+#     state: started
+#     daemon_reload: yes
+
+- name: Instalmos yum-utils
+  yum:
+    name: yum-utils
+    state: present
+
+- name: Add repository hashicorp
+  get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+    mode: '0644'
+
+- name: Instalmos consul
+  yum:
+    name: consul
+    state: present
+    update_cache: yes

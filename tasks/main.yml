@@ -1,2 +1,15 @@
 ---
-# tasks file for asg1612.consul
+- name: incluimos tareas cuando sea redhat
+  include_tasks: 
+    file: redhat.yml
+  when: ansible_distribution == "RedHat"
+  
+- name: incluimos tareas cuando sea Ubuntu
+  include_tasks: 
+    file: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- name: incluimos tareas cuando sea Debian
+  include_tasks: 
+    file: debian.yml
+  when: ansible_distribution == "Debian"
