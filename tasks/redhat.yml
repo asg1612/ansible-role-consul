@@ -23,6 +23,7 @@
   yum:
     name: yum-utils
     state: present
+  become_user: root
 
 - name: Add repository hashicorp
   get_url:
