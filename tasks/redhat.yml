@@ -23,7 +23,7 @@
   yum:
     name: yum-utils
     state: present
-  become_user: root
+  become: yes
 
 - name: Add repository hashicorp
   get_url:
@@ -36,3 +36,4 @@
     name: consul
     state: present
     update_cache: yes
+  become: yes
