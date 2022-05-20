@@ -6,13 +6,9 @@
     state: present
   become: yes
 
-- name: get release
-  shell: lsb_release -cs
-  register: release
-
 - name: Add hashicorp repo
   ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ release.stdout }} main
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
     state: present
     filename: hashicorp
   become: yes
