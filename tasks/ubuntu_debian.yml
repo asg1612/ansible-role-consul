@@ -1,0 +1,22 @@
+---
+
+- name: add hashicorp apt key 
+  ansible.builtin.apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: get release
+  shell: lsb_release -cs
+  register: release
+
+- name: Add hashicorp repo
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ release.stdout }} main
+    state: present
+    filename: hashicorp
+
+- name: Install consul
+  ansible.builtin.apt:
+    name: consul
+    state: present
+    update_cache: yes

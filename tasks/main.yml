@@ -6,10 +6,10 @@
   
 - name: incluimos tareas cuando sea Ubuntu
   include_tasks: 
-    file: ubuntu.yml
+    file: ubuntu_debian.yml
   when: ansible_distribution == "Ubuntu"
 
 - name: incluimos tareas cuando sea Debian
   include_tasks: 
-    file: debian.yml
+    file: ubuntu_debian.yml
   when: ansible_distribution == "Debian"
