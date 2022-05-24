@@ -1,0 +1,5 @@
+---
+- name: consul key
+  shell: consul keygen
+  run_once: true
+  register: consulkeygen

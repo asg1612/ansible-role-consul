@@ -13,3 +13,7 @@
   include_tasks: 
     file: ubuntu_debian.yml
   when: ansible_distribution == "Debian"
+
+- name: Bootstrap consul
+  include_tasks:
+    file: bootstrap.yml
