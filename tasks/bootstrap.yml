@@ -8,7 +8,7 @@
 
 - name: check Certificate Authority exists
   stat:
-    path: /consul-agent-ca.pem
+    path: ./consul-agent-ca.pem
   register: consulagentca
 
 - name: Create the Certificate Authority
