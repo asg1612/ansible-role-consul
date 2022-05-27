@@ -18,7 +18,15 @@
 - name: Create the certificates
   shell: consul tls cert create -server -dc hsap -domain consul  
   run_once: true
-  loop: "{{ groups['all'] }}"
+  loop: "{{ groups['consul'] }}"
   
+- name: upload server Configuration
+  ansible.builtin.template:
+    src: server.hcl.j2
+    dest: /etc/consul.d/server.hcl
+    owner: consul
+    group: consul
+    mode: '0644'
+
 
   # scp consul-agent-ca.pem <dc-name>-<server/client>-consul-<cert-number>.pem <dc-name>-<server/client>-consul-<cert-number>-key.pem <USER>@<PUBLIC_IP>:/etc/consul.d/

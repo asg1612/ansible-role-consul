@@ -11,6 +11,8 @@ platforms:
     image: docker.io/geerlingguy/docker-ubi8-ansible
     privileged: true
     required: true
+    groups:
+      - consul
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /lib/systemd/systemd
@@ -18,12 +20,34 @@ platforms:
     image: localhost/hsap/docker-debian-systemd:latest
     # privileged: true
     required: true
+    groups:
+      - consul
     capabilities:
       - SYS_ADMIN
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /lib/systemd/systemd
   - name: ubuntu
+    image: localhost/hsap/docker-ubuntu-systemd:latest
+    # privileged: true
+    required: true
+    groups:
+      - consul
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /lib/systemd/systemd
+  - name: ubuntu-agente1
+    image: localhost/hsap/docker-ubuntu-systemd:latest
+    # privileged: true
+    required: true
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: /lib/systemd/systemd
+  - name: ubuntu-agente2
     image: localhost/hsap/docker-ubuntu-systemd:latest
     # privileged: true
     required: true
