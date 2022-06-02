@@ -16,8 +16,10 @@ platforms:
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /lib/systemd/systemd
+    networks:
+      - name: "netconsul"
   - name: debian
-    image: localhost/hsap/docker-debian-systemd:latest
+    image: harbor.rancher.hsap.sacyl.es/library/docker-debian-systemd:latest
     # privileged: true
     required: true
     groups:
@@ -27,8 +29,10 @@ platforms:
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /lib/systemd/systemd
+    networks:
+      - name: "netconsul"
   - name: ubuntu
-    image: localhost/hsap/docker-ubuntu-systemd:latest
+    image: harbor.rancher.hsap.sacyl.es/library/docker-ubuntu-systemd:latest
     # privileged: true
     required: true
     groups:
@@ -38,8 +42,10 @@ platforms:
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /lib/systemd/systemd
+    networks:
+      - name: "netconsul"
   - name: ubuntu-agente1
-    image: localhost/hsap/docker-ubuntu-systemd:latest
+    image: harbor.rancher.hsap.sacyl.es/library/docker-ubuntu-systemd:latest
     # privileged: true
     required: true
     capabilities:
@@ -47,8 +53,10 @@ platforms:
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /lib/systemd/systemd
+    networks:
+      - name: "netconsul"
   - name: ubuntu-agente2
-    image: localhost/hsap/docker-ubuntu-systemd:latest
+    image: harbor.rancher.hsap.sacyl.es/library/docker-ubuntu-systemd:latest
     # privileged: true
     required: true
     capabilities:
@@ -56,6 +64,8 @@ platforms:
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     command: /lib/systemd/systemd
+    networks:
+      - name: "netconsul"
 provisioner:
   name: ansible
 verifier:
